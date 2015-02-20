@@ -1,0 +1,10 @@
+.idea
+bin/css
+bin/js
+bin/views
+bin/*.html
+bower_components
+node_modules
+knockout-component.iml
+
+!.gitkeep

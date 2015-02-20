@@ -1,0 +1,8 @@
+{
+  "name": "knockout-haxe-sample",
+  "dependencies": {
+    "jquery": "",
+    "knockoutjs": "",
+    "bootstrap": ""
+  }
+}

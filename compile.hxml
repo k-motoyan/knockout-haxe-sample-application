@@ -1,0 +1,13 @@
+-js bin/js/app.js
+-cp src
+-main ks.Main
+-dce full
+-lib JQueryExtern
+-lib knockout.hx
+
+# template resources
+-resource bin/views/blog-header.html@blog-header
+-resource bin/views/blog-content.html@blog-content
+-resource bin/views/blog-switch-menu.html@blog-switch-menu
+-resource bin/views/blog-writer.html@blog-writer
+-resource bin/views/blog-list.html@blog-list

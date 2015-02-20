@@ -1,0 +1,4 @@
+section#blog-list
+  ul.list-group(data-bind="foreach: titles")
+    li.list-group-item
+      a(href="#", data-bind="text: title, event: { click: move }")

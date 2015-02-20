@@ -1,0 +1,14 @@
+{
+  "name": "knockout-haxe-sample",
+  "devDependencies": {
+    "bower": "*",
+    "gulp": "*",
+    "gulp-shell": "*",
+    "gulp-watch": "*",
+    "gulp-jade": "*",
+    "gulp-stylus": "*",
+    "gulp-uglify": "*",
+    "gulp-uglifycss": "*",
+    "gulp-concat": "*"
+  }
+}
