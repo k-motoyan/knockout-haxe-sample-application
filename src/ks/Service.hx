@@ -7,6 +7,8 @@ enum SERVICE_EVENT {
     BLOG_INIT_MENU;
     BLOG_SWITCH_MENU;
     BLOG_SWITCH_CONTENT;
+    LOGINED;
+    LOGOUTED;
 }
 
 enum SERVICE_API {
@@ -46,6 +48,8 @@ class Service {
             case SERVICE_EVENT.BLOG_INIT_MENU: 'blog-initialize-menu-event';
             case SERVICE_EVENT.BLOG_SWITCH_MENU: 'blog-switch-menu-event';
             case SERVICE_EVENT.BLOG_SWITCH_CONTENT: 'blog-switch-content-event';
+            case SERVICE_EVENT.LOGINED: 'logined-event';
+            case SERVICE_EVENT.LOGOUTED: 'logouted-event';
         }
     }
 

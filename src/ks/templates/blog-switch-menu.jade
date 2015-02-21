@@ -1,5 +1,5 @@
 section#blog-switch-menu
-  ul.nav.nav-tabs(data-bind="foreach: menu")
+  ul.nav.nav-tabs(style="display: none;", data-bind="foreach: menu, visible: visibility() === true")
     li(role="presentation", data-bind="css: { active: is_active }")
       a(href="#", data-bind="text: text, event: { click: switch_menu }")
 

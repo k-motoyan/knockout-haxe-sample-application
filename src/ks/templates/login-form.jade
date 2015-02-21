@@ -1,0 +1,19 @@
+#login-modal.modal.fade(tabindex="-1", role="dialog")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        h4 アカウント情報を入力してログインして下さい
+      .modal-body
+        form
+          .form-group
+            label(for="mail") メールアドレス
+            input#mail.form-control(type="email", required="true", placeholder="なんでもいいよ")
+          .form-group
+            label(for="pass") パスワード
+            input#pass.form-control(type="password", required="true", placeholder="なんでもいいよ")
+      .modal-footer
+        button.btn.btn-primary(type="button", data-bind="event: { click: login }") ログイン
+        button.btn.btn-default(type="button", data-dismiss="modal") キャンセル
+

@@ -8,6 +8,7 @@ setup:
 	rm -f bin/views/*.html
 	rm -f bin/index.html
 	cp bower_components/bootstrap/dist/css/bootstrap.min.css bin/css/bootstrap.css
+	cp bower_components/bootstrap/dist/js/bootstrap.min.js bin/js/bootstrap.js
 	cp bower_components/jquery/dist/jquery.min.js bin/js/jquery.js
 	cp bower_components/knockoutjs/dist/knockout.js bin/js/knockout.js
 

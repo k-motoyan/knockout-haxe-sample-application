@@ -1,0 +1,13 @@
+nav#header-nav
+  .text-right
+    button.btn.btn-link(
+      type="button",
+      data-target="#login-modal",
+      data-toggle="modal",
+      data-bind="visible: identity() === false"
+    ) ログイン
+    button.btn.btn-link(
+      type="button",
+      style="display: none",
+      data-bind="visible: identity() === true, event: { click: logout }"
+    ) ログアウト

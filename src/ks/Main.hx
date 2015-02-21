@@ -1,5 +1,8 @@
 package ks;
 
+import ks.services.event.LogoutedEvent;
+import ks.components.LoginForm;
+import ks.components.HeaderNav;
 import ks.components.BlogList;
 import ks.components.BlogWriter;
 import ks.data.Blog;
@@ -14,9 +17,12 @@ import ks.services.api.WriterApi;
 import ks.services.event.InitBlogMenuEvent;
 import ks.services.event.SwitchBlogMenuEvent;
 import ks.services.event.SwitchBlogContentEvent;
+import ks.services.event.LoginedEvent;
 import ks.Service;
 import knockout.Knockout;
 import jQuery.JQuery;
+import jQuery.JQueryStatic;
+import jQuery.Promise;
 
 class Main {
 
@@ -39,33 +45,77 @@ class Main {
         Service.registerEvent(SERVICE_EVENT.BLOG_SWITCH_CONTENT, function() {
             return new SwitchBlogContentEvent();
         });
+        Service.registerEvent(SERVICE_EVENT.LOGINED, function() {
+            return new LoginedEvent();
+        });
+        Service.registerEvent(SERVICE_EVENT.LOGOUTED, function() {
+            return new LogoutedEvent();
+        });
     }
 
     inline static function boot(): Void {
         var writer_api = Service.getApi(SERVICE_API.WRITER);
         var blog_api = Service.getApi(SERVICE_API.BLOG);
 
-        writer_api.get({ id: 1 }, function(res: BaseResponse) {
+        new HeaderNav();
+        new LoginForm();
+
+        registeBlogrWriterComponent()
+            .then(registerBlogMainComponent, deferredOnError)
+            .then(registerBlogSubComponent, deferredOnError)
+            .then(function() { Knockout.applyBindings({}); }, deferredOnError);
+    }
+
+    inline static function registeBlogrWriterComponent(): Promise {
+        var d = JQueryStatic.Deferred();
+
+        Service.getApi(SERVICE_API.WRITER).get({ id: 1 }, function(res: BaseResponse) {
             var writer = new Writer(res.data);
 
             new BlogWriter(writer);
 
-            blog_api.get({ writer_id: writer.id, blog_id: writer.top_blog_id }, function(res: BaseResponse) {
-                var blog = new Blog(res.data);
+            d.resolve( writer );
+        }, function(e) { d.reject(e); });
 
-                new BlogHeader(blog);
-                new BlogSwitchMenu();
-                new BlogContent(blog);
+        return d.promise();
+    }
 
-                blog_api.get({ writer_id: writer.id }, function(res: BaseResponse) {
-                    var blog_list = new BlogItems(res.data);
+    inline static function registerBlogMainComponent(writer: Writer): Promise {
+        var d = JQueryStatic.Deferred();
 
-                    new BlogList(writer.id, blog_list.items);
+        var request_params = { writer_id: writer.id, blog_id: writer.top_blog_id };
 
-                    Knockout.applyBindings({});
-                });
-            });
-        });
+        Service.getApi(SERVICE_API.BLOG).get(request_params, function(res: BaseResponse) {
+            var blog = new Blog(res.data);
+
+            new BlogHeader(blog);
+            new BlogSwitchMenu();
+            new BlogContent(blog);
+
+            d.resolve( writer );
+        }, function(e) { d.reject(e); });
+
+        return d.promise();
+    }
+
+    inline static function registerBlogSubComponent(writer: Writer): Promise {
+        var d = JQueryStatic.Deferred();
+
+        Service.getApi(SERVICE_API.BLOG).get({ writer_id: writer.id }, function(res: BaseResponse) {
+            var blog_items = new BlogItems(res.data);
+
+            new BlogList(writer.id, blog_items.items);
+
+            d.resolve();
+        }, function(e) { d.reject(e); });
+
+        return d.promise();
+    }
+
+    inline static function deferredOnError(e: Dynamic): Void {
+        if (Type.typeof(e) != TNull) {
+            trace(e);
+        }
     }
 
     static function main() {

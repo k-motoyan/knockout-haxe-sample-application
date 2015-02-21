@@ -11,11 +11,29 @@ class BlogSwitchMenuViewModel {
 
     var menu: ObservableArray<BlogSwitchMenuItem>;
 
+    var visibility: Observable<Bool>;
+
     public function new() {
         menu = Knockout.observableArray([
             new BlogSwitchMenuItem("表示", true),
             new BlogSwitchMenuItem("編集", false)
         ]);
+        visibility = Knockout.observable(false);
+
+        onLogined();
+        onLogouted();
+    }
+
+    inline function onLogined() {
+        Service.getEvent(SERVICE_EVENT.LOGINED).on(function(cb: Void -> Dynamic, e: Event) {
+            visibility.set(true);
+        });
+    }
+
+    inline function onLogouted() {
+        Service.getEvent(SERVICE_EVENT.LOGOUTED).on(function(cb: Void -> Dynamic, e: Event) {
+            visibility.set(false);
+        });
     }
 
 }

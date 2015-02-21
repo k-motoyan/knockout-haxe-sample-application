@@ -2,7 +2,7 @@
 -cp src
 -main ks.Main
 -dce full
--lib JQueryExtern
+-lib jQueryExtern
 -lib knockout.hx
 
 # template resources
@@ -11,3 +11,5 @@
 -resource bin/views/blog-switch-menu.html@blog-switch-menu
 -resource bin/views/blog-writer.html@blog-writer
 -resource bin/views/blog-list.html@blog-list
+-resource bin/views/header-nav.html@header-nav
+-resource bin/views/login-form.html@login-form

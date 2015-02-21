@@ -8,6 +8,8 @@ enum RESOURCE {
     BLOG_SWITCH_MENU;
     BLOG_WRITER;
     BLOG_LIST;
+    HEADER_NAV;
+    LOGIN_FORM;
 }
 
 class EnumResource {
@@ -19,6 +21,8 @@ class EnumResource {
             case RESOURCE.BLOG_SWITCH_MENU: Resource.getString("blog-switch-menu");
             case RESOURCE.BLOG_WRITER: Resource.getString("blog-writer");
             case RESOURCE.BLOG_LIST: Resource.getString("blog-list");
+            case RESOURCE.HEADER_NAV: Resource.getString("header-nav");
+            case RESOURCE.LOGIN_FORM: Resource.getString("login-form");
         }
     }
 
