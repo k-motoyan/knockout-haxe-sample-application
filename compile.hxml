@@ -5,6 +5,8 @@
 -lib jQueryExtern
 -lib knockout.hx
 
+-D DEPLOY
+
 # template resources
 -resource bin/views/blog-header.html@blog-header
 -resource bin/views/blog-content.html@blog-content

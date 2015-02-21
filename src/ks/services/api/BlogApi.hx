@@ -10,9 +10,10 @@ typedef BlogApiGetParam = {
 
 class BlogApi extends BaseApi implements RestApi {
 
-    var resouce: String = "/api/writer/:writer_id/blog";
+    var resouce: String;
 
     public function new() {
+        resouce = '$base_resouce_path/writer/:writer_id/blog';
     }
 
     public function get(params    : BlogApiGetParam,
@@ -30,21 +31,27 @@ class BlogApi extends BaseApi implements RestApi {
                         ?done_cb  : Dynamic -> Void = null,
                         ?fail_cb  : Dynamic -> Void = null,
                         ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
     public function patch(params   : Dynamic,
                          ?done_cb  : Dynamic -> Void = null,
                          ?fail_cb  : Dynamic -> Void = null,
                          ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
     public function delete(params   : Dynamic,
                           ?done_cb  : Dynamic -> Void = null,
                           ?fail_cb  : Dynamic -> Void = null,
                           ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
     inline function makeResouceUrl(?params: BlogApiGetParam): String {

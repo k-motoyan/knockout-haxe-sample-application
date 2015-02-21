@@ -9,9 +9,10 @@ typedef WriterApiGetParam = {
 
 class WriterApi extends BaseApi implements RestApi {
 
-    var resouce: String = "/api/writer/";
+    var resouce: String;
 
     public function new() {
+        resouce = '$base_resouce_path/writer';
     }
 
     public function get(params    : WriterApiGetParam,
@@ -23,28 +24,34 @@ class WriterApi extends BaseApi implements RestApi {
         var fail   = if (fail_cb   != null) fail_cb   else baseFailCallBack;
         var always = if (always_cb != null) always_cb else baseAlwaysCallBack;
 
-        JQueryStatic.getJSON('${resouce}${id}.json', {}).done(done).fail(fail).always(always);
+        JQueryStatic.getJSON('${resouce}/${id}.json', {}).done(done).fail(fail).always(always);
     }
 
     public function post(params   : Dynamic,
                         ?done_cb  : Dynamic -> Void = null,
                         ?fail_cb  : Dynamic -> Void = null,
                         ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
     public function patch(params   : Dynamic,
                          ?done_cb  : Dynamic -> Void = null,
                          ?fail_cb  : Dynamic -> Void = null,
                          ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
     public function delete(params   : Dynamic,
                           ?done_cb  : Dynamic -> Void = null,
                           ?fail_cb  : Dynamic -> Void = null,
                           ?always_cb: Void    -> Void = null): Void {
+        #if DEBUG
         trace("This method is imcompatible.");
+        #end
     }
 
 }

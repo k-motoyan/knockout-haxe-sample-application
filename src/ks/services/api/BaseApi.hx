@@ -8,6 +8,12 @@ typedef BaseResponse = {
 
 class BaseApi {
 
+    #if DEPLOY
+    var base_resouce_path = "/knockout-haxe-sample/api";
+    #else
+    var base_resouce_path = "/api";
+    #end
+
     function baseDoneCallBack(response: BaseResponse): Void {
         trace(response);
     }
