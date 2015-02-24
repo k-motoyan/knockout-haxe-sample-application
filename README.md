@@ -7,13 +7,13 @@ This repository is KnockoutJs sample application code for Haxe.
 Cloning this repository.
 
 ```
-git cline https://github.com/k-motoyan/knockout-haxe-sample-application.git
+git clone https://github.com/k-motoyan/knockout-haxe-sample-application.git
 ```
 
 Run make setup and make server command .
 
 ```
-make seup && make server
+make setup && make server
 ```
 
 After, access to `localhost:200` your browser.
